@@ -18,7 +18,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True) # auto_now_add=True : insert될 대 일시를 자동 등록(insert)
 
     def __str__(self):
-        return self.quest_text
+        return self.question_text
 
 class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
