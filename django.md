@@ -66,3 +66,81 @@ PROJECT : 전체 프로젝트
 
 APP : 프로젝트를 구성하는 하위 서비스
 
+
+
+
+
+---
+
+
+
+정적 + 동적 서비스 -> 웹 어플리케이션
+
+동적 서비스를 위해선 웹 어플리케이션 서버가 필요하다. (실행환경)
+
+- 만들때 다양한 언어를 사용할 수 있지만 규약이 필요하고 각각의 실행 환경이 필요하다 -> CGI 
+- 장고 : 파이썬으로 웹 어플리케이션을 개발할 수 있는 환경
+
+### MVT패턴
+
+> 역할에 따라 나눠서 개발하자.
+>
+> -> 유지보수, 재사용성, 확장성, 유연성이 좋아진다.
+
+M : model
+
+- 데이터베이스의 데이터를 다룬다.
+- ORM을 이용해 SQL 문 없이 CRUD작업을 처리한다.
+
+V : view ( = controller) - 매니저 같은 역할
+
+- 사용자의 요청을 받아서 응답할때까지의 처리 과정을 담당한다. ( 일 처리 흐름 Work flow)
+- Client 가 요청한 작업을 처리하는 흐름을 담당한다.
+- 구현 방법은 함수 기반 방식과 클래스 기반 방식 두가지가 있다.
+
+T : template ( = view)
+
+- Client에게 보여지는 부분 (응답화면)의 처리를 담당한다.
+
+
+
+### ORM이란
+
+> object relational mapping - 객체 관계 매핑
+
+객체와 관계형 데이터 베이스의 데이터를 자동으로 연결하여 sql문 없이 데이터 베이스 작업(CRUD)를 작성할 수 있다.
+
+![image-20210526234123958](C:\Users\rey\AppData\Roaming\Typora\typora-user-images\image-20210526234123958.png)
+
+
+
+장점
+
+- 비지니스로직과 데이터베이스 로직을 분리할 수 있다. 재사용성 유지보수성이 증가한다.
+- DBMS에 대한 종속성이 줄어든다.
+
+단점
+
+- DBMS 고유의 기능을 사용할 수 없다.
+- DB의 관계가 복잡할 수록 난이도 또한 올라간다.
+
+----
+
+Model 생성 절차
+
+- 장고 모델을 먼저 만들고 데이터베이스에 적용
+  1.  models.py에 model 클래스 작성
+  2. admin.py에 등록(admin app에서 관리할 경우)
+     - admin.site.register(모델 클래스)
+  3. 마이그레이션(migration)파일 생성 - (makemigrations 명령)
+     - 변경 사항 db에 넣기 위한 내역을 가진 파일로 app/migrations 디렉토리에 생성된다.
+     - python manage.py makemigrations
+     - sql문 확인
+       - python manage.py sqlmigrate app이름 마이그레이션파일명
+  4. Database에 적용(migrate 명령)
+     - python manage.py migration
+
+
+
+,
+
