@@ -104,9 +104,35 @@ T : template ( = view)
 
 
 
+### manage.py
+
+python manage.py 명령어
+
+- startapp: 프로젝트에app을새로생성
+
+- makemigrations: 어플리케이션의변경을추적해DB에적용할변경사항을정리한다.
+
+- migrate: makemigrations 로정리된DB 변경내용을Database에적용한다.
+
+- sqlmigrate: 변경사항을DB에적용할때사용한SQL 확인. 
+
+- runserver: 테스트서버를실행한다.
+
+- shell: 장고shell 실행.
+
+- createsuperuser: 관리자계정생성
+
+- changepassword: 계정의비밀번호변경
+
+
+
+----
+
 ### ORM이란
 
 > object relational mapping - 객체 관계 매핑
+>
+> sql문 없이 DB작업이 가능해진다.
 
 객체와 관계형 데이터 베이스의 데이터를 자동으로 연결하여 sql문 없이 데이터 베이스 작업(CRUD)를 작성할 수 있다.
 
@@ -126,7 +152,9 @@ T : template ( = view)
 
 ----
 
-Model 생성 절차
+
+
+# Model 생성 절차
 
 - 장고 모델을 먼저 만들고 데이터베이스에 적용
   1.  models.py에 model 클래스 작성
@@ -140,7 +168,9 @@ Model 생성 절차
   4. Database에 적용(migrate 명령)
      - python manage.py migration
 
+- DB에 테이블이 있을 경우 다음을 이용해 장고 Model 클래스들을 생성할 수 있다.
 
 
-,
+
+
 
