@@ -123,3 +123,32 @@ http://127.0.0.1:8000/admin
   ```
 
   -> 위 함수에서 선택한 컬럼값으로 보여진다.
+
+
+
+----
+
+# python shell 사용하기
+
+```
+> python manage.py shell
+```
+
+를 입력하여 cmd 창에서 바로 할 수 있다.
+
+
+
+ jupyter notebook 에서도 사용하려면 아래 코드를 입력해주면 된다. 
+
+```python
+# jupyter notebook 에서 django sell을 사용할 수 있도록 설정
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings'# settings파일이 어디있는가 알려주어야함.
+os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
+
+import django
+django.setup()
+```
+
+
+

@@ -24,6 +24,7 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     vote = models.PositiveIntegerField(default=0)
     question = models.ForeignKey(to=Question,on_delete=models.CASCADE) # 외래키 어떤 테이블의 어떤 컬럼을 참조하는지 알려주어야함
+    #question_부모 pkid
     # to : 참조 Model 클래스 지정
     # on_delete : 부모 테이블의 값이 delete될 경우 처리방식 , CASCADE: 참조하는 자식데이터도 같이 삭제
     def __str__(self):
