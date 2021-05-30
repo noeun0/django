@@ -10,16 +10,18 @@
 <body>
     <h1>투표 폼</h1>
     {{question.pk}}. {{question.question_text}}<p>
-    {% for choice in question.choice_set.all %}
-        {# choice: Choice모델객체#}
-        {{choice.choice_text}}<br>
-
-    {% endfor %}
+    <form action="/polls/vote" method='post'>
+        {% csrf_token %} {# post 방식으로 요청시 반드시 넣어주아야 한다. csrf공격을 방지하기 위한 token값을 생성 #}
+        {% for choice in question.choice_set.all %}
+            {# choice: Choice모델객체#}
+            <input type = 'radio' name='choice' value="{{choice.pk}}">  
+            <!-- radio는 그룹으로 묶어야 정상 작동한다. -> name을 지정해주어야함 -->
+            
+            {{choice.choice_text}}<br>
+        {% endfor %}
+        <input type = 'submit' value='VOTE'> <button>투표</button>
+        <input type = 'reset' value = 'RESET'> <button type = 'reset'>초기화</button>
+   </form>
+    
 </body>
 </html>
-
-{#한줄주석#}
-<!-- html주석 -->
-{%comment%}
-block주석
-{%endcomment%}
