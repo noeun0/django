@@ -4,7 +4,10 @@
 
 from django.urls import path
 from . import views
+#url pattern 들의 namespace(prefix)로 사용할 값 설정
+#url pattern 설정의 이름 호출 시 다른 app들과 구분하기 위해 사용한다.
 
+app_name = "polls"
 urlpatterns = [
     path('list', views.list, name='list'),
     path('vote_form/<int:question_id>', views.vote_form, name = 'vote_form'), #vote_form/1 이런식으로 url 

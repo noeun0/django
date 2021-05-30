@@ -2,6 +2,7 @@ from .models import Question
 from .models import Choice
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.urls import reverse # reverse : path설정 이름으로 url문자열을 만들어주는 함수.
 
 '''
 - View 로직 순서 : 
@@ -59,8 +60,11 @@ def vote(request):
 
 
 
-    #결과 응답
-    return redirect(f"/polls/vote_result/{question_id}")
+    #결과 응답         " url 설정 이름",    args =[path 파라미터 에 전달할 값 , ... , ...]
+    url_str = reverse("polls:vote_result", args=[question_id])
+    print("-------------",url_str)
+    return redirect(url_str)
+    #return redirect(f"/polls/vote_result/{question_id}")
 # 한 문제의 투표 결과를 보여주는 view. polls/vote_result/번호
 def vote_result(request,question_id):
     # 조회

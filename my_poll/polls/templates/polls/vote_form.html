@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>투표 폼</h1>
-    {% if error_message != None %}
+    {% if error_message %}
     <div style = "color:red">
             {{error_message}}{# 변수가 없거나 , None일 경우 그냥 안보인다. #}
         </div><br>
@@ -17,7 +17,7 @@
     <!-- span테그는 줄 바꿈 없이 사용할 수 있다. -->
     {{question.pk}}. {{question.question_text}}<p>
 
-    <form action="/polls/vote" method='post'>
+    <form action="{%url 'polls:vote'%}" method='post'>
         {% csrf_token %} {# post 방식으로 요청시 반드시 넣어주아야 한다. csrf공격을 방지하기 위한 token값을 생성 #}
         <input type='hidden' name = "question_id" value="{{question.pk}}">
         {% for choice in question.choice_set.all %}
