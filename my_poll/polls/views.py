@@ -12,7 +12,7 @@ from django.http import HttpResponse
 # http://localhost:8000/[앱이름]/[path]
 # http://localhost:8000/polls/list --> config/urls.py 매핑해줘야 한다. 
 def list(request): 
-    question_list = Question.objects.all().order_by('-pub_date')
+    question_list = Question.objects.all().order_by('-pub_date')  
     print(question_list)
     # 어떤 템플릿을 호출할 것인가.
     # templates 을 호출 : render(request, 'templates의경로'[, template 에 전달할 값을 딕셔너리로] )을 사용 
@@ -25,4 +25,4 @@ def vote_form(request, question_id):
         question = Question.objects.get(pk = question_id) # filter : 쿼리셋으로 반환.
         return render(request,"polls/vote_form.html",{"question":question}) # templates에서 찾기 시작함
     except:
-        return render(request,'polls/error.html')
+        return render(request,'polls/error.html', {"error_message" : "없는 질문을 조회했슴미당."})

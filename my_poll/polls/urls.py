@@ -8,7 +8,6 @@ from . import views
 urlpatterns = [
     path('list', views.list, name='list'),
     path('vote_form/<int:question_id>', views.vote_form, name = 'vote_form'), #vote_form/1 이런식으로 url 
-    # path('vote', views.vote, name='vote'),
+    #path('vote', views.vote, name='vote'),
     # path('vote_result/<int:question_id>', views.vote_result, name='vote_result'),
-
 ]
