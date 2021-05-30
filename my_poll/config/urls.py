@@ -21,6 +21,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('polls/list', list, name='list'),
-    path('polls/', include('polls.urls')),
-    #path('', TemplateView.as_view(template_name='home.html'))
+    path('polls/', include('polls.urls')), # url 시작이 polls이면 polls/urls.py의 urlpattern을 참고해라.
+    path('', TemplateView.as_view(template_name='home.html'), name = 'home') # view 없이 바로 템플릿 실행
 ]
