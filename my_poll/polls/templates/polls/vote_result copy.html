@@ -1,7 +1,13 @@
 <!-- templates/polls.html -->
-{%extends "layout.html"%}
-{%block title%}투표결과{%endblock title%}
-{%block contents%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표결과</title>
+</head>
+<body>
     <h1>투표 결과</h1>
     {{question.pk}}. {{question.question_text}} 의 결과입니다.
     <ol>
@@ -12,4 +18,5 @@
     </ol>
     <br>
     <a href ="{% url 'polls:list' %}">질문 목록</a><!--/polls/list-->
-{%endblock contents%}
+</body>
+</html>

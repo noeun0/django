@@ -1,7 +1,13 @@
 <!-- templates/polls/vote_form.html -->
-{%extends "layout.html"%}
-{%block title%}투표{%endblock title%}
-{%block contents%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표</title>
+</head>
+<body>
     <h1>투표 폼</h1>
     {% if error_message %}
     <div style = "color:red">
@@ -25,4 +31,5 @@
         <input type = 'reset' value = 'RESET'> <button type = 'reset'>초기화</button>
    </form>
     
-{%endblock contents%}
+</body>
+</html>

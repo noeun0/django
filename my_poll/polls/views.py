@@ -10,6 +10,8 @@ from django.urls import reverse # reverse : path설정 이름으로 url문자열
     2. 비즈니스 로직처리 
     3. 결과 응답
 '''
+
+
 # 질문 목록을 보여주는 뷰 
 # http://localhost:8000/[앱이름]/[path]
 # http://localhost:8000/polls/list --> config/urls.py 매핑해줘야 한다. 
