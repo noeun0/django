@@ -1,0 +1,29 @@
+<!-- template파일 : html 을 기반 + django 문법 + django html -->
+
+{%extends "layout.html"%}
+
+{%block title%}Polls List{%endblock title%}
+
+{%block contents%}
+
+    <!-- <a href="http://daum.net">Daum</a>
+    <a href= "http://naver.com">Naver</a> -->
+    <h1>설문 목록</h1>
+    질문 총 개수 : {{question_list| length}}
+    <ul class = 'list-group'>
+        {% for question in question_list %} 
+         <!-- 템플릿 테그 : 실행 코드를 작성/ 블록을 지정해주어야 한다 -->
+         <!-- <li>~</li>까지 for문에서 반복된다. -->
+        <li class = 'list-group-item'>
+            <!-- 템플릿 변수 : 값을 출력해주는 역할 -->
+            <!-- <a href="/polls/vote_form/{{question.id}}">{{question.question_text }}</a> -->
+            <a href="{%url 'polls:vote' question.id%}">
+                {{question.question_text}}
+            </a>
+            {{question.pub_date | date:'Y-m-d'}}
+        </li>
+        <!-- 들여쓰기 밖으로 나왔다는 것을 의미 -->
+        {% endfor%} 
+    </ul>
+  
+    {%endblock contents%} 
