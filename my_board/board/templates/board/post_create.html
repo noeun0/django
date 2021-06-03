@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block title %} 글 등록 {%endblock title%}
+{%block contents%}
+<form method = 'post'>
+    {% csrf_token %}
+    {{form.as_p}} {# 테이블 형태로 만들어준다. #}
+    <button type ='submit'> 글 등록 </button>
+    <button type="reset">초기화</button>
+</form>
+
+{%endblock contents%}
