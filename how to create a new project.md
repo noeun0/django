@@ -231,7 +231,8 @@ class Post(models.Model):
         return f"{self.pk}. {self.title}" # 아이디와 타이틀이 나오게 설정.
 ```
 
-
+- null=true는 null을 허용한다는 뜻, null=true 가 아니면 not null 널을 허용하지 않음 (required와 관련- 필수 입력 사항인지 )
+- blank=true 빈 문자욜 허용한다는 뜻.
 
 ### 2. admin.py에 모델 클래스 들을 등록해야 한다.(admin 페이지에서 관리해주기위해서)
 
@@ -317,7 +318,9 @@ class PostForm(forms.ModelForm): #화면 쪽을 만드는 것
 
 
 
-> 버튼 누르는 것 말고는 대부분 겟 방식
+( 버튼 누르는 것 말고는 대부분 겟 방식)
+
+
 
 # View/template 생성하기
 
@@ -378,13 +381,13 @@ post_create.html 생성하기
 {% block title %} 글 등록 {%endblock title%}
 {%block contents%}
 <form method = 'post'>
-    {% csrf_token %}
+    {% csrf_token %} # 위조를 막기 위한 토큰 값
     {{form.as_p}} {# 테이블 형태로 만들어준다. #}
     <button type ='submit'> 글 등록 </button>
     <button type="reset">초기화</button>
 </form>
 
-{%endblock contents%
+{%endblock contents%}
 ```
 
 
@@ -405,9 +408,90 @@ app_name = 'board'
 urlpatterns=[
     path('detail', TemplateView.as_view(template_name = 'board/post_detail.html'), name = 'detail'),# 게시물 상세 페이지
     path('create', views.PostCreateView.as_view(), name = 'create'), # 글 등록 view url
-#as view : html 없이 바로 데이터 보낼 수 있게 하는 것...
+#as view : html 없이 바로 데이터 보낼 수 있게 하는 것...(?)
 ]
 ```
 
 
+
+---
+
+
+
+# django-bootstrap 패키지 사용하기
+
+
+
+설치하기
+
+```
+pip install django-bootstrap4
+```
+
+
+
+config/settings.py INSTALLED_APPS에 등록
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'bootstrap4',
+    'board',
+]
+```
+
+
+
+{{form}} 을 사용하는 template에서 {%load bootstrap4%} # extends 다음에 임포트 해주어야함
+
+{{form}} 대신에 {%bootstrap_form form%} 사용할 것.
+
+```html
+{% extends 'layout.html' %}
+{% load bootstrap4%}
+{% block title %} 글 등록 {%endblock title%}
+{%block contents%}
+<form method = 'post'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <!-- {{form.as_p}} {# 테이블 형태로 만들어준다. #} -->
+    <button type ='submit' class = "btn btn-primary"> 글 등록 </button>
+    <button type="reset" class = "btn btn-primary">초기화</button>
+</form>
+
+{%endblock contents%}
+```
+
+> post 방식으로 create 요청이 들어오면 
+>
+> 입력한 값이 model form 으로 들어가고 모델이 DB에 save 해준다.
+>
+> createview 가 post form 안에 각각 컬럼들의 값을 넣은 후, 1. creatview가 값을 검증 한다.
+>
+> 값이 다 있을 시 알아서2.  save 메소드를 호출해서 save 해준다. (insert/update)
+>
+> 그리고 응답은 detail로 해준다.
+>
+> -> 한 주소에서 등록 폼을 주고, 등록 하는 두 기능을 동시에 한다.
+>
+> 
+
+- django-bootstrap4 검색 후 도큐먼트 들어가서 테그들을 확인 할 수 있다.
+
+----
+
+
+
+정상적으로 등록 했을때 입력 된 글이 나오게 하기.
+
+- 글의 id 를 알려주어야 조회해서 보여줄 수 있다.
+
+  path파라미터 값을 받아야 하고,  detailview를 사용한다.
+
+post_detail.html 
 

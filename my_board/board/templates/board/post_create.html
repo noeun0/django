@@ -1,12 +1,14 @@
 {% extends 'layout.html' %}
-
+{% load bootstrap4%}
 {% block title %} 글 등록 {%endblock title%}
 {%block contents%}
+<!-- action 을 생략하면 현재 url로 요청한다. -->
 <form method = 'post'>
     {% csrf_token %}
-    {{form.as_p}} {# 테이블 형태로 만들어준다. #}
-    <button type ='submit'> 글 등록 </button>
-    <button type="reset">초기화</button>
+    {% bootstrap_form form %}
+    <!-- {{form.as_p}} {# 테이블 형태로 만들어준다. #} -->
+    <button type ='submit' class = "btn btn-primary"> 글 등록 </button>
+    <button type="reset" class = "btn btn-primary">초기화</button>
 </form>
 
 {%endblock contents%}
