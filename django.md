@@ -1,48 +1,99 @@
 # 프로젝트 만들기
 
-1. django-admin startproject 프로젝트명
+폴더 생성 후 이동
+
+```
+mkdir <folder name>
+cd <folder name>
+```
 
 
 
-2. 프로젝트 디렉토리 생성 후 django-admin startproject 전체설정경로명
+가상환경 구축 ( 프로젝트 마다 다 별개로 )
 
-   ```
-   > mkdir mysite(프로젝트 디렉토리 생성)
-   >cd mysite
-   >django-admin startproject config .
-   ```
-
-   
+```
+python -m venv <name>
+```
 
 
+
+활성화
+
+```
+source <name>/Scripts/Activate
+```
+
+
+
+장고설치
+
+```
+pip install django
+```
+
+
+
+장고 프로젝트 생성
+
+```
+django-admin startproject <name> .
+```
 
 
 
 # App 생성하기
 
-1.  프롬프트 창에서 python manage.py startapp app명 입력
+
+
+장고 app 생성
+
+```
+python manage.py startapp <anme>
+```
+
++
+
+settings.py  에 등록
+
+```
+INSTALLED_APPS = [
+    'pages',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+정리하면
+
+1.  프롬프트 창에서 **python manage.py startapp app명 입력**
 
 2. **config/settings.py파일의 INSTALLED_APPS에 app명 추가**
 
 3. url 설정 작업
 
-   exam 아래 urls.py 생성
+   app디렉토리 아래 urls.py 생성
 
-   config/urls.py 에 import include, urlpatterns에 path('exam/', include('exam.urls'))추가
+   config/urls.py 에 `import include`
 
-   urls.py(exam)에 from django.urls import path 추가
+   urlpatterns에 `path('<app명>/', include('<app명>.urls'))`추가
 
-4. exam/views.py
+   urls.py(<app명>)에 from django.urls import path 추가
 
-   사용자 요청을 처리하는 함수 구현
+4. <app명>/views.py에 사용자 요청을 처리하는 함수 구현
 
-5. exam/urls.py에 위에서 만든 함수와 url을 설정
+5. <app명>/urls.py에 위에서 만든 함수와 url을 설정
 
-6. http://127.0.0.1:8000/exam/hello1
+6. http://127.0.0.1:8000/<app명>/hello1
+
+   
 
 url 설정하기
 
-1. 새폴더 생성 exam아래 templates/exam
+1. 새폴더 생성 <app명>아래 templates/<app명>
 
 2. 새파일 : greeting.html
 
@@ -65,8 +116,6 @@ config
 PROJECT : 전체 프로젝트
 
 APP : 프로젝트를 구성하는 하위 서비스
-
-
 
 
 
@@ -173,4 +222,6 @@ python manage.py 명령어
 
 
 
+
+---
 
