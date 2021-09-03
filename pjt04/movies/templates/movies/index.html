@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <img src="{% static 'hey.jpg' %}" class="align-self-center" alt="bo" height="1000px">
+    <h1>index</h1>
+    {% for movie in movies %}
+        <a href="{% url 'movies:detail' movie.pk %}"> <p>{{ movie.title }}</p> </a>
+        <p> {{ movie.content }} </p>
+
+    {% endfor %}
+
+{% endblock content %}
